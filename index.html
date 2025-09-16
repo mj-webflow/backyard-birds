@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="Cache-Control" content="max-age=3600">
+    <title>Find Notable Birds nearby and in Your Backyard</title>
+    <meta name="description" content="Ever wondered what birds are native to your area? You can find birds that your neighbors have seen. Jays, swifts, hawks, finches, water birds for example. ">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mjzorick.github.io/backyard-birds/" />
+    <meta property="og:image" content="https://mjzorick.github.io/backyard-birds/img/bluejay.webp" />
+    <link rel="icon" type="image/png" sizes="32x32" href="bird-icon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="bird-icon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body class="font-sans bird-bg">
+    <!-- Skip Links for Keyboard Navigation -->
+    <a href="#main-content" class="sr-only focus:not-sr-only">Skip to main content</a>
+    <a href="#navigation" class="sr-only focus:not-sr-only">Skip to navigation</a>
+    <header class="bg-amber-100/95 backdrop-blur-sm shadow-lg py-4 sticky top-0 z-50" role="banner">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-3xl font-bold text-blue-800 no-underline" aria-label="Backyard Birds - Home">Backyard Birds</a>
+                
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="md:hidden text-blue-800 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded p-2" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                
+                <!-- Desktop navigation -->
+                <nav id="navigation" role="navigation" aria-label="Main navigation" class="hidden md:block">
+                    <ul class="flex list-none gap-2">
+                        <li><a href="#birds" class="no-underline text-blue-600 font-medium transition-colors duration-300 hover:text-slate-100 px-3 py-2 rounded">Local Birds</a></li>
+                        <li><a href="#sightings" class="no-underline text-blue-600 font-medium transition-colors duration-300 hover:text-slate-100 px-3 py-2 rounded">Recent Sightings</a></li>
+                        <li><a href="#find-birds" class="no-underline text-blue-600 font-medium transition-colors duration-300 hover:text-slate-100 px-3 py-2 rounded">Find Nearby Birds</a></li>
+                        <li><a href="#contact" class="no-underline text-blue-600 font-medium transition-colors duration-300 hover:text-slate-100 px-3 py-2 rounded">Contact</a></li>       
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Mobile navigation menu -->
+            <nav id="mobile-navigation" class="hidden md:hidden mt-4 pb-4" role="navigation" aria-label="Mobile navigation">
+                <ul class="flex flex-col space-y-2">
+                    <li><a href="#birds" class="block no-underline text-blue-600 font-medium transition-colors duration-300 hover:bg-blue-50 hover:text-blue-800 px-4 py-3 rounded-lg">Birds</a></li>
+                    <li><a href="#sightings" class="block no-underline text-blue-600 font-medium transition-colors duration-300 hover:bg-blue-50 hover:text-blue-800 px-4 py-3 rounded-lg">Recent Sightings</a></li>
+                    <li><a href="#find-birds" class="block no-underline text-blue-600 font-medium transition-colors duration-300 hover:bg-blue-50 hover:text-blue-800 px-4 py-3 rounded-lg">Find Nearby Birds</a></li>
+                    <li><a href="#contact" class="block no-underline text-blue-600 font-medium transition-colors duration-300 hover:bg-blue-50 hover:text-blue-800 px-4 py-3 rounded-lg">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <section id="hero" class="max-w-6xl mx-auto px-5 py-16 bg-white" role="region" aria-labelledby="birds-heading">
+            <h1 id="birds-heading" class="text-3xl font-bold text-center mb-8 text-blue-800">Welcome to Backyard Birds!</h1>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Have you ever looked out your backdoor, watched a bird, and wondered not only what bird is this, but is it native to my area? You can easily find out with this site.</p>
+            <div class="text-center" id="find-birds-hero-button">
+
+            </div>
+        </section>
+
+        <section id="birds" class="max-w-6xl mx-auto px-5 py-16 bg-white" role="region" aria-labelledby="birds-heading">
+            <h2 id="birds-heading" class="text-3xl font-bold text-center mb-8 text-blue-800">Birds Often Seen in Lincoln Heights, Los Angeles</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+                I've been lucky enough to see these birds in my backyard. I've included some fun facts about each bird.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Backyard bird collection">
+                <article class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl" role="listitem">
+                    <div class="w-full h-48 md:h-56 lg:h-64 mb-4 overflow-hidden rounded-xl">
+                        <img src="img/bluejay.webp" alt="California Scrub Jay perched on a branch, showing its bright blue plumage and distinctive crest" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-xl mb-2 text-orange-800 text-center font-semibold">California Scrub Jay</h3>
+                    <p class="text-gray-500 text-center mb-4">Fun fact: Scrub jays have been observed gathering around dead jays, creating a cacophonous "funeral" that can last for up to half an hour.</p>
+                </article>
+                <article class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl" role="listitem">
+                    <div class="w-full h-48 md:h-56 lg:h-64 mb-4 overflow-hidden rounded-xl">
+                        <img src="img/California-Towhee.webp" alt="California Towhee, a medium-sized brown songbird with rusty undertail coverts, foraging on the ground" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-xl mb-2 text-orange-800 text-center font-semibold">California Towhee</h3>
+                    <p class="text-gray-500 text-center mb-4">Fun fact: The California Towhee looks for food by dragging its feet through leaves and twigs with a distinctive two-legged backward hop.</p>
+                </article>
+                <article class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl" role="listitem">
+                    <div class="w-full h-48 md:h-56 lg:h-64 mb-4 overflow-hidden rounded-xl">
+                        <img src="img/hawk.webp" alt="Red-tailed Hawk in flight, showing its broad wings and distinctive reddish-brown tail feathers" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-xl mb-2 text-orange-800 text-center font-semibold">Red-Tailed Hawk</h3>
+                    <p class="text-gray-500 text-center mb-4">Fun fact: diving speed of up to 120 mph and excellent vision, seeing 8 times better than humans.</p>
+                </article>
+                <article class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl" role="listitem">
+                    <div class="w-full h-48 md:h-56 lg:h-64 mb-4 overflow-hidden rounded-xl">
+                        <img src="img/raven.webp" alt="Common Raven with glossy black feathers and thick bill, perched and displaying its intelligent demeanor" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-xl mb-2 text-orange-800 text-center font-semibold">Common Raven</h3>
+                    <p class="text-gray-500 text-center mb-4">Fun fact: Ravens are highly intelligent. They can recognize and remember human faces and even using tools to find food.</p>
+                </article>
+                <article class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl" role="listitem">
+                    <div class="w-full h-48 md:h-56 lg:h-64 mb-4 overflow-hidden rounded-xl">
+                        <img src="img/hummingbird.webp" alt="Ruby-throated Hummingbird hovering near a flower, showing its iridescent green back and ruby-red throat" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-xl mb-2 text-orange-800 text-center font-semibold">Ruby-Throated Hummingbird</h3>
+                    <p class="text-gray-500 text-center mb-4">Fun fact: Hummingbirds have remarkable spatial memory, allowing them to remember feeder locations years in advance.</p>
+                </article>
+                <article class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl" role="listitem">
+                    <div class="w-full h-48 md:h-56 lg:h-64 mb-4 overflow-hidden rounded-xl">
+                        <img src="img/swift.webp" alt="White-throated Swift in flight, displaying its long, narrow wings and distinctive white throat patch against dark plumage" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-xl mb-2 text-orange-800 text-center font-semibold">White-Throated Swift</h3>
+                    <p class="text-gray-500 text-center mb-4">Fun fact: Swifts can can sleep on the wing and even mate while airborne, spending most of their lives in the air.</p>
+                </article>
+        </section>
+
+        <section id="sightings" class="max-w-6xl mx-auto px-5 py-16 bg-white" role="region" aria-labelledby="sightings-heading">
+            <div>
+                <div aria-live="polite" aria-label="Bird sightings results">
+                    Results:
+                    <div id="sightingsList" role="list" aria-label="Recent bird sightings from eBird API">
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="find-birds" role="region" aria-labelledby="find-birds-heading">
+            <h2 id="find-birds-heading" class="text-3xl font-bold text-center mb-8 text-blue-800">Find Birds Near You</h2>
+            <p>It's easy to find birds in your backyard! Using the eBird API, we can get the latest bird sightings in your area.</p>
+            
+            <div class="interactive-section">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 max-w-md mx-auto">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-4 text-center">Find Notable Birds by State</h3>
+                    <form id="stateForm" class="space-y-4" role="search" aria-label="Search for notable birds by state">
+                        <div class="form-group">
+                            <label for="stateSelect" class="block text-gray-700 font-medium mb-2">Select a U.S. State:</label>
+                            <select id="stateSelect" name="stateSelect" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                                <option value="">Choose a state...</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-slate-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium">
+                            Find Notable Birds
+                        </button>
+                    </form>
+                    <div id="stateBirdsList" class="mt-6" role="region" aria-live="polite" aria-label="Notable birds search results"></div>
+                </div>
+             </div>
+        </section>
+
+        <section id="contact" class="max-w-6xl mx-auto px-5 py-16 bg-white" role="region" aria-labelledby="contact-heading">
+            <h2 id="contact-heading" class="text-3xl font-bold text-center mb-8 text-blue-800">Contact Me</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+                Have a question about backyard birds or want to share your own sightings? I'd love to hear from you.
+            </p>
+            
+            <div class="max-w-2xl mx-auto">
+                <form id="contactForm" class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200" role="form" aria-label="Contact form">
+                    <div class="form-group mb-6">
+                        <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
+                        <input type="text" id="name" name="name" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                               placeholder="Your full name" aria-describedby="name-error">
+                        <div class="error-message text-red-500 text-sm mt-1 hidden" id="name-error"></div>
+                    </div>
+                    
+                    <div class="form-group mb-6">
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address *</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                               placeholder="your.email@example.com" aria-describedby="email-error">
+                        <div class="error-message text-red-500 text-sm mt-1 hidden" id="email-error"></div>
+                    </div>
+                    
+                    <div class="form-group mb-6">
+                        <label for="message" class="block text-gray-700 font-medium mb-2">Message *</label>
+                        <textarea id="message" name="message" required rows="5"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical"
+                                  placeholder="Tell us about your bird sightings, questions, or feedback..." aria-describedby="message-error"></textarea>
+                        <div class="error-message text-red-500 text-sm mt-1 hidden" id="message-error"></div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" id="submitButton" 
+                                class="bg-slate-500 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+                            <span class="button-text">Send Message</span>
+                            <span class="loading-text hidden">Sending...</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Success/Error Messages -->
+                    <div id="form-success" class="hidden mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg" role="alert" aria-live="polite">
+                        <div class="flex items-center">
+                            Thank you! Your message has been sent successfully. We'll get back to you soon!
+                        </div>
+                    </div>
+                    
+                    <div id="form-error" class="hidden mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg" role="alert" aria-live="assertive">
+                        <div class="flex items-center">
+                            <span id="error-message">Sorry, there was an error sending your message. Please try again.</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" class="bg-white rounded-lg shadow-sm m-4 mx-auto max-w-6xl" role="contentinfo">
+        <div class="mx-auto p-4 md:flex md:items-center md:justify-between">
+        <span class="text-sm text-gray-500 sm:text-center">Backyard Birds™. All Rights Reserved.
+        </span>
+        <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0" role="list">
+            <li>
+                <a href="#" class="hover:underline me-4 md:me-6" aria-label="Copyright 2025">© 2025 </a>
+            </li>
+        </ul>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>
