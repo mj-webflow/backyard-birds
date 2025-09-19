@@ -19,6 +19,7 @@ window.Webflow.push(() => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
+        var sightings = [];
         const data = await response.json();
         if (data && data.length > 0) {
             // First 12 sightings
@@ -27,7 +28,7 @@ window.Webflow.push(() => {
             sightings([]);
         }
         
-        sightingsSection.innerHTML = data.map((sighting) => `
+        sightingsSection.innerHTML = sightings.map((sighting) => `
            <div class="w-layout-cell">
                 <div class="yellow-card">
                 <strong class="orange">${sighting.comName}</strong> <em class="light-grey">(${sighting.sciName})</em>
