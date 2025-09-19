@@ -6,6 +6,7 @@ window.Webflow.push(() => {
 
     const baseUrl = "https://api.ebird.org/v2/data/obs/geo/recent?lat=34.08&lng=-118.20&sort=species";
     const apiKey = "kpf4t1mcqhee";
+    const data = [];
 
     const fetchSightings = async () => {
         const response = await fetch(baseUrl, {
@@ -19,9 +20,10 @@ window.Webflow.push(() => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
+       data = await response.json();
+       console.log(data)
     }
-
+    console.log(data)
     sightingsSection.innerHTML = data.map((sighting) => `
         <div class="sighting">
             <h3>${sighting.species}</h3>
