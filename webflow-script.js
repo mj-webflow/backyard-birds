@@ -23,9 +23,16 @@ window.Webflow.push(() => {
         console.log(data);
         
         sightingsSection.innerHTML = data.map((sighting) => `
-            <div class="sighting">
-                <h3>${sighting.species}</h3>
-                <p>${sighting.location}</p>
+           <div class="w-layout-cell">
+                <div class="yellow-card">
+                <strong class="orange-text">${sighting.comName}</strong><em class="light-grey">(${sighting.sciName})</em>
+                <br>
+                <small class="paragraph">Location: ${sighting.locName}</small>
+                <br>
+                Date: ${sighting.obsDt}</p>
+                <br>
+                Count: ${sighting.howMany || 'Not specified'}</p>
+                </div>
             </div>
         `).join("");
     }
