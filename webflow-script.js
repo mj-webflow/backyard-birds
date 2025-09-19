@@ -6,7 +6,7 @@ window.Webflow.push(() => {
 
     const baseUrl = "https://api.ebird.org/v2/data/obs/geo/recent?lat=34.08&lng=-118.20&sort=species";
     const apiKey = "kpf4t1mcqhee";
-    const data = [];
+    var data = [];
 
     const fetchSightings = async () => {
         const response = await fetch(baseUrl, {
