@@ -24,12 +24,12 @@ window.Webflow.push(() => {
         sightingsSection.innerHTML = data.slice(0, 12).map((sighting) => `
            <div class="w-layout-cell">
                 <div class="yellow-card">
-                <strong class="orange">${sighting.comName}</strong> <em class="light-grey">(${sighting.sciName})</em>
-                <br><br>
+                <strong class="heading-h2>${sighting.comName}</strong> <em class="light-grey">(${sighting.sciName})</em>
+                <br>                
                 <small class="">Location: ${sighting.locName}
-                <br><br>
-                Date: ${sighting.obsDt}</p>
-                <br><br>
+                <br>
+                Date: ${sighting.obsDt}
+                <br>
                 Count: ${sighting.howMany || 'Not specified'}</small>
                 <br>
                 </div>
