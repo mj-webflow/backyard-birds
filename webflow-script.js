@@ -20,18 +20,24 @@ window.Webflow.push(() => {
         }
 
         const data = await response.json();
-        console.log(data);
+        if (data && data.length > 0) {
+            // First 12 sightings
+            sightings(data.slice(0, 12));
+        } else {
+            sightings([]);
+        }
         
         sightingsSection.innerHTML = data.map((sighting) => `
            <div class="w-layout-cell">
                 <div class="yellow-card">
-                <strong class="orange-text">${sighting.comName}</strong><em class="light-grey">(${sighting.sciName})</em>
-                <br>
-                <small class="paragraph">Location: ${sighting.locName}</small>
-                <br>
+                <strong class="orange">${sighting.comName}</strong> <em class="light-grey">(${sighting.sciName})</em>
+                <br><br>
+                <small class="">Location: ${sighting.locName}
+                <br><br>
                 Date: ${sighting.obsDt}</p>
+                <br><br>
+                Count: ${sighting.howMany || 'Not specified'}</small>
                 <br>
-                Count: ${sighting.howMany || 'Not specified'}</p>
                 </div>
             </div>
         `).join("");
