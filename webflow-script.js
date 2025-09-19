@@ -19,16 +19,16 @@ window.Webflow.push(() => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-       const data = await response.json();
-       console.log(data)
+        const data = await response.json();
+        console.log(data);
+        
+        sightingsSection.innerHTML = data.map((sighting) => `
+            <div class="sighting">
+                <h3>${sighting.species}</h3>
+                <p>${sighting.location}</p>
+            </div>
+        `).join("");
     }
-    console.log(data)
-    sightingsSection.innerHTML = data.map((sighting) => `
-        <div class="sighting">
-            <h3>${sighting.species}</h3>
-            <p>${sighting.location}</p>
-        </div>
-    `).join("");
 
     fetchSightings();
 });
