@@ -40,7 +40,10 @@ window.Webflow.push(() => {
     const populateDropdown = () => {
         const dropdown = document.getElementById("state-dropdown");
         dropdown.innerHTML = `
-         <select id="stateSelect" name="stateSelect" style="padding: 8px 4px; border: 1px solid #d1d5dc; width: 100%; border-radius: 8px;">    
+         <form id="stateForm" class="space-y-4" role="search" aria-label="Search for notable birds by state">
+            <div class="form-group"> 
+        <select id="stateSelect" name="stateSelect" style="padding: 8px 4px; border: 1px solid #d1d5dc; width: 100%; border-radius: 8px;">    
+            </div>
             <option style="color: #3f52b5;" value="">Choose a state...</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -94,7 +97,7 @@ window.Webflow.push(() => {
                                 <option value="WY">Wyoming</option>
                             </select>
                     </form>
-                    <button type="submit" class="w-full bg-slate-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium">
+                    <button type="submit" class="button w-button">
                             Find Notable Birds
                         </button>
                     <div id="stateBirdsList" class="mt-6" role="region" aria-live="polite" aria-label="Notable birds search results"></div>
