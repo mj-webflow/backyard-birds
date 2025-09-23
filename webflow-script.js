@@ -40,9 +40,10 @@ window.Webflow.push(() => {
     const populateDropdown = () => {
         const dropdown = document.getElementById("stateSelect");
         dropdown.innerHTML = `
+         <select id="stateSelect" name="stateSelect" style="padding: 8px 4px; ">    
             <option value="">Choose a state...</option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
                                 <option value="AR">Arkansas</option>
                                 <option value="CA">California</option>
@@ -92,7 +93,21 @@ window.Webflow.push(() => {
                                 <option value="WI">Wisconsin</option>
                                 <option value="WY">Wyoming</option>
                             </select>
+            <button type="submit" class="w-full bg-slate-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium">
+                            Find Notable Birds
+                        </button>
+                    </form>
+                    <div id="stateBirdsList" class="mt-6" role="region" aria-live="polite" aria-label="Notable birds search results"></div>
         `;
+    }
+
+    const fetchNotableBirdsByState = async () => {
+        const response = await fetch(baseUrl, {
+            method: "GET",
+            headers: {
+                "X-eBirdApiToken": apiKey
+            }
+        });
     }
 
     populateDropdown();
