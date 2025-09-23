@@ -40,7 +40,7 @@ window.Webflow.push(() => {
     const populateDropdown = () => {
         const dropdown = document.getElementById("state-dropdown");
         dropdown.innerHTML = `
-         <select id="stateSelect" name="stateSelect" style="padding: 8px 4px; border: 1px solid #d1d5dc;">    
+         <select id="stateSelect" name="stateSelect" style="padding: 8px 4px; border: 1px solid #d1d5dc; width: 100%; border-radius: 8px;">    
             <option style="color: #3f52b5;" value="">Choose a state...</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
