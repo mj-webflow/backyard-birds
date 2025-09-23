@@ -38,7 +38,7 @@ window.Webflow.push(() => {
     }
 
     const populateDropdown = () => {
-        const dropdown = document.getElementById("stateSelect");
+        const dropdown = document.getElementById("state-dropdown");
         dropdown.innerHTML = `
          <select id="stateSelect" name="stateSelect" style="padding: 8px 4px; ">    
             <option value="">Choose a state...</option>
@@ -93,9 +93,6 @@ window.Webflow.push(() => {
                                 <option value="WI">Wisconsin</option>
                                 <option value="WY">Wyoming</option>
                             </select>
-            <button type="submit" class="w-full bg-slate-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium">
-                            Find Notable Birds
-                        </button>
                     </form>
                     <div id="stateBirdsList" class="mt-6" role="region" aria-live="polite" aria-label="Notable birds search results"></div>
         `;
