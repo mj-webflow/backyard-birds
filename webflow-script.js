@@ -94,19 +94,97 @@ window.Webflow.push(() => {
                                 <option value="WY">Wyoming</option>
                             </select>
                     </form>
+                    <button type="submit" class="w-full bg-slate-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium">
+                            Find Notable Birds
+                        </button>
                     <div id="stateBirdsList" class="mt-6" role="region" aria-live="polite" aria-label="Notable birds search results"></div>
         `;
     }
 
-    const fetchNotableBirdsByState = async () => {
-        const response = await fetch(baseUrl, {
-            method: "GET",
-            headers: {
-                "X-eBirdApiToken": apiKey
+    const fetchNotableBirdsByState = async (stateCode, selectedStateName) => {
+        const stateBirdsList = document.getElementById('stateBirdsList');
+        
+        if (!stateBirdsList) {
+            console.error('stateBirdsList element not found');
+            return;
+        }
+
+        // Show loading message
+        stateBirdsList.innerHTML = '<div class="mt-4 p-4 bg-blue-50 rounded-lg"><p class="text-blue-700 text-center">Loading notable birds for your state...</p></div>';
+
+        try {
+            const response = await fetch(`https://api.ebird.org/v2/data/obs/US-${stateCode}/recent/notable?detail=full`, {
+                method: "GET",
+                headers: {
+                    "X-eBirdApiToken": apiKey
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        });
+
+            const data = await response.json();
+
+            if (data && data.length > 0) {
+                stateBirdsList.innerHTML = `
+                    <h4 class="text-lg font-semibold text-blue-700 mb-3">Notable Birds in ${selectedStateName} (${data.length} found)</h4>
+                    <div class="space-y-3 max-h-96 overflow-y-auto">
+                        ${data.slice(0, 12).map((bird) => `
+                            <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-4 hover:shadow-md transition-all duration-200">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex-1">
+                                        <h5 class="font-semibold text-orange-800 text-sm mb-1">${bird.comName}</h5>
+                                        <p class="text-xs text-gray-600 italic mb-2">${bird.sciName}</p>
+                                        <div class="text-xs text-gray-700 space-y-1">
+                                            <p>${bird.locName}</p>
+                                            <p>${new Date(bird.obsDt).toLocaleDateString()}</p>
+                                            ${bird.howMany ? `<p>Count: ${bird.howMany}</p>` : ''}
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-medium mb-2 inline-block">Notable</span>
+                                        ${bird.userDisplayName ? `<p class="text-xs text-gray-500 mt-1">By: ${bird.userDisplayName}</p>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                stateBirdsList.innerHTML = '<div class="mt-4 p-4 bg-gray-50 rounded-lg"><p class="text-gray-600 text-center">No notable birds found for this state.</p></div>';
+            }
+        } catch (error) {
+            console.error('Error fetching notable birds:', error);
+            stateBirdsList.innerHTML = `<div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"><p class="text-red-700">Error loading birds: ${error.message}</p></div>`;
+        }
+    }
+
+    const setupStateForm = () => {
+        const stateForm = document.getElementById('stateForm');
+        
+        if (stateForm) {
+            stateForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const stateSelect = document.getElementById('stateSelect');
+                const stateCode = stateSelect.value;
+                const selectedOption = stateSelect.querySelector(`option[value="${stateCode}"]`);
+                const selectedStateName = selectedOption ? selectedOption.textContent : stateCode;
+                
+                if (stateCode && stateCode.trim()) {
+                    fetchNotableBirdsByState(stateCode.trim(), selectedStateName);
+                } else {
+                    const stateBirdsList = document.getElementById('stateBirdsList');
+                    if (stateBirdsList) {
+                        stateBirdsList.innerHTML = '<div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"><p class="text-red-700">Please select a state first.</p></div>';
+                    }
+                }
+            });
+        }
     }
 
     populateDropdown();
     fetchSightings();
+    setupStateForm();
 });
