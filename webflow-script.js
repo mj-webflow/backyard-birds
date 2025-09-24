@@ -152,7 +152,7 @@ window.Webflow.push(() => {
                 </div>
                 </div>
                 </div>
-                `;
+                `).join("");
             } else {
                 stateBirdsList.innerHTML = '<div class="mt-4 p-4 bg-gray-50 rounded-lg"><p class="text-gray-600 text-center">No notable birds found for this state.</p></div>';
             }
