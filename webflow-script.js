@@ -131,28 +131,26 @@ window.Webflow.push(() => {
 
             if (data && data.length > 0) {
                 stateBirdsList.innerHTML = `
-                    <h4 class="text-lg font-semibold text-blue-700 mb-3">Notable Birds in ${selectedStateName} (${data.length} found)</h4>
-                    <div class="space-y-3 max-h-96 overflow-y-auto">
-                        ${data.slice(0, 12).map((bird) => `
-                            <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-4 hover:shadow-md transition-all duration-200">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-1">
-                                        <h5 class="font-semibold text-orange-800 text-sm mb-1">${bird.comName}</h5>
-                                        <p class="text-xs text-gray-600 italic mb-2">${bird.sciName}</p>
-                                        <div class="text-xs text-gray-700 space-y-1">
-                                            <p>${bird.locName}</p>
-                                            <p>${new Date(bird.obsDt).toLocaleDateString()}</p>
-                                            ${bird.howMany ? `<p>Count: ${bird.howMany}</p>` : ''}
-                                        </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-medium mb-2 inline-block">Notable</span>
-                                        ${bird.userDisplayName ? `<p class="text-xs text-gray-500 mt-1">By: ${bird.userDisplayName}</p>` : ''}
-                                    </div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
+                <h4 class="heading-h4">Notable Birds in ${selectedStateName} (${data.length} found)</h4>
+                <div class="yellow-card">
+                    <div class="div-block-7">
+                        <div class="div-block-8">
+                    <h6 class="heading-h6">${bird.comName}</h6>
+                <p class="paragraph-3">${bird.sciName}</p>
+                <div>
+                <p class="notable-card-paragraph">${bird.locName}</p>
+                <p class="notable-card-paragraph">${new Date(bird.obsDt).toLocaleDateString()}</p>
+                <p class="notable-card-paragraph">${bird.howMany || 'Not specified'}</p>
+                </div>
+                </div>
+                <div class="div-block-9">
+                <div>
+                <p class="notable">Notable</p>
+                <p class="notable-card-paragraph">By.${bird.userDisplayName}</p>
+                </div>
+                </div>
+                </div>
+                </div>
                 `;
             } else {
                 stateBirdsList.innerHTML = '<div class="mt-4 p-4 bg-gray-50 rounded-lg"><p class="text-gray-600 text-center">No notable birds found for this state.</p></div>';
