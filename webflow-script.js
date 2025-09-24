@@ -130,6 +130,7 @@ window.Webflow.push(() => {
             const data = await response.json();
 
             if (data && data.length > 0) {
+                console.log(data);
                 stateBirdsList.innerHTML = `
                 <h4 class="heading-h4">Notable Birds in ${selectedStateName} (${data.length} found)</h4>
                 <div class="yellow-card">
