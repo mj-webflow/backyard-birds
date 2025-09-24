@@ -135,18 +135,18 @@ window.Webflow.push(() => {
                 <div class="yellow-card">
                     <div class="div-block-7">
                         <div class="div-block-8">
-                    <h6 class="heading-h6">${bird.comName}</h6>
-                <p class="paragraph-3">${bird.sciName}</p>
+                    <h6 class="heading-h6">${data.comName}</h6>
+                <p class="paragraph-3">${data.sciName}</p>
                 <div>
-                <p class="notable-card-paragraph">${bird.locName}</p>
-                <p class="notable-card-paragraph">${new Date(bird.obsDt).toLocaleDateString()}</p>
-                <p class="notable-card-paragraph">${bird.howMany || 'Not specified'}</p>
+                <p class="notable-card-paragraph">${data.locName}</p>
+                <p class="notable-card-paragraph">${new Date(data.obsDt).toLocaleDateString()}</p>
+                <p class="notable-card-paragraph">${data.howMany || 'Not specified'}</p>
                 </div>
                 </div>
                 <div class="div-block-9">
                 <div>
                 <p class="notable">Notable</p>
-                <p class="notable-card-paragraph">By.${bird.userDisplayName}</p>
+                <p class="notable-card-paragraph">By.${data.userDisplayName}</p>
                 </div>
                 </div>
                 </div>
