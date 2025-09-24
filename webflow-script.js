@@ -132,7 +132,7 @@ window.Webflow.push(() => {
             }
 
             const data = await response.json();
-            birdState.innerHTML = `<h4 class="heading-h4" id="bird-state">Notable Birds in ${selectedStateName} (${bird.length} found)</h4>`;
+            birdState.innerHTML = `<h4 class="heading-h4" id="bird-state">Notable Birds in ${selectedStateName} (${data.length} found)</h4>`;
 
             if (data && data.length > 0) {
                 stateBirdsList.innerHTML = data.slice(0, 50).map((bird) => `
