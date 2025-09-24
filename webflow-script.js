@@ -130,9 +130,10 @@ window.Webflow.push(() => {
             const data = await response.json();
 
             if (data && data.length > 0) {
-                console.log(data);
+                birdState.innerHTML = `Notable Birds in ${selectedStateName} (${data.length} found)`;
+
                 stateBirdsList.innerHTML = data.slice(0, 50).map((bird) => `
-                <h4 class="heading-h4">Notable Birds in ${selectedStateName} (${bird.length} found)</h4>
+                <h4 class="heading-h4" id="bird-state">Notable Birds in ${selectedStateName} (${bird.length} found)</h4>
                 <div class="yellow-card">
                     <div class="div-block-7">
                         <div class="div-block-8">
