@@ -100,6 +100,7 @@ window.Webflow.push(() => {
                     <button type="submit" class="button w-button">
                             Find Notable Birds
                         </button>
+                    <div id="birdState"></div>
                     <div id="stateBirdsList" class="mt-6" role="region" aria-live="polite" aria-label="Notable birds search results"></div>
         `;
     }
@@ -108,6 +109,8 @@ window.Webflow.push(() => {
         const stateBirdsList = document.getElementById('stateBirdsList');
         const birdState = document.getElementById("birdState");
         
+        console.log("State Code: ", stateCode);
+        console.log("Selected State Name: ", selectedStateName);
         if (!stateBirdsList) {
             console.error('stateBirdsList element not found');
             return;
