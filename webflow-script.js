@@ -132,10 +132,8 @@ window.Webflow.push(() => {
             }
 
             const data = await response.json();
-
+            birdState.innerHTML = `Notable Birds in ${selectedStateName} (${data.length} found)`;
             if (data && data.length > 0) {
-                birdState.innerHTML = `Notable Birds in ${selectedStateName} (${data.length} found)`;
-
                 stateBirdsList.innerHTML = data.slice(0, 50).map((bird) => `
                 <h4 class="heading-h4" id="bird-state">Notable Birds in ${selectedStateName} (${bird.length} found)</h4>
                 <div class="yellow-card">
@@ -146,7 +144,7 @@ window.Webflow.push(() => {
                 <div>
                 <p class="notable-card-paragraph">${bird.locName}</p>
                 <p class="notable-card-paragraph">${new Date(bird.obsDt).toLocaleDateString()}</p>
-                <p class="notable-card-paragraph">${bird.howMany || 'Not specified'}</p>
+                <p class="notable-card-paragraph">Count: ${bird.howMany || 'Not specified'}</p>
                 </div>
                 </div>
                 <div class="div-block-9">
