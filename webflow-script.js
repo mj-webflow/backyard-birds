@@ -136,7 +136,7 @@ window.Webflow.push(() => {
 
             if (data && data.length > 0) {
                 stateBirdsList.innerHTML = data.slice(0, 50).map((bird) => `
-                <div class="yellow-card">
+                <div class="yellow-card small">
                     <div class="div-block-7">
                         <div class="div-block-8">
                     <h6 class="heading-h6">${bird.comName}</h6>
@@ -150,7 +150,7 @@ window.Webflow.push(() => {
                 <div class="div-block-9">
                 <div>
                 <p class="notable">Notable</p>
-                <p class="notable-card-paragraph">By.${bird.userDisplayName}</p>
+                <p class="notable-card-paragraph">By. ${bird.userDisplayName}</p>
                 </div>
                 </div>
                 </div>
