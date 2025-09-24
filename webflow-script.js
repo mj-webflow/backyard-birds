@@ -106,6 +106,7 @@ window.Webflow.push(() => {
 
     const fetchNotableBirdsByState = async (stateCode, selectedStateName) => {
         const stateBirdsList = document.getElementById('stateBirdsList');
+        const birdState = document.getElementById("birdState");
         
         if (!stateBirdsList) {
             console.error('stateBirdsList element not found');
@@ -114,6 +115,7 @@ window.Webflow.push(() => {
 
         // Show loading message
         stateBirdsList.innerHTML = '<div class="mt-4 p-4 bg-blue-50 rounded-lg"><p class="text-blue-700 text-center">Loading notable birds for your state...</p></div>';
+        birdState
 
         try {
             const response = await fetch(`https://api.ebird.org/v2/data/obs/US-${stateCode}/recent/notable?detail=full`, {
