@@ -97,7 +97,7 @@ window.Webflow.push(() => {
                                 <option value="WY">Wyoming</option>
                             </select>
                     </form>
-                    <button type="submit" class="button w-button">
+                    <button type="submit" class="button w-button" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                             Find Notable Birds
                         </button>
                     <div id="birdState"></div>
@@ -117,7 +117,7 @@ window.Webflow.push(() => {
         }
 
         // Show loading message
-        stateBirdsList.innerHTML = '<div class="mt-4 p-4 bg-blue-50 rounded-lg"><p class="text-blue-700 text-center">Loading notable birds for your state...</p></div>';
+        stateBirdsList.innerHTML = '<div class=""><p class=" text-center">Loading notable birds for your state...</p></div>';
 
         try {
             const response = await fetch(`https://api.ebird.org/v2/data/obs/US-${stateCode}/recent/notable?detail=full`, {
@@ -157,11 +157,11 @@ window.Webflow.push(() => {
                 </div>
                 `).join("");
             } else {
-                stateBirdsList.innerHTML = '<div class="mt-4 p-4 bg-gray-50 rounded-lg"><p class="text-gray-600 text-center">No notable birds found for this state.</p></div>';
+                stateBirdsList.innerHTML = '<div class=""><p class="text-center">No notable birds found for this state.</p></div>';
             }
         } catch (error) {
             console.error('Error fetching notable birds:', error);
-            stateBirdsList.innerHTML = `<div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"><p class="text-red-700">Error loading birds: ${error.message}</p></div>`;
+            stateBirdsList.innerHTML = `<div class=""><p class="">Error loading birds: ${error.message}</p></div>`;
         }
     }
 
@@ -182,7 +182,7 @@ window.Webflow.push(() => {
                 } else {
                     const stateBirdsList = document.getElementById('stateBirdsList');
                     if (stateBirdsList) {
-                        stateBirdsList.innerHTML = '<div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"><p class="text-red-700">Please select a state first.</p></div>';
+                        stateBirdsList.innerHTML = '<div class=""><p class="">Please select a state first.</p></div>';
                     }
                 }
             });
