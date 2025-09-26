@@ -2,7 +2,12 @@
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
-    const sightingsSection = document.getElementById("sightingsList");
+    const yellowBirdCard = document.getElementById("la-bird-card");
+    const commonName = document.querySelectorAll("#sighting-common");
+    const sciName = document.querySelectorAll("#sighting-scientific");
+    const location = document.querySelectorAll("#sighting-location");
+    const date = document.querySelectorAll("#sighting-date");
+    const count = document.querySelectorAll("#sighting-count");
 
     const baseUrl = "https://api.ebird.org/v2/data/obs/geo/recent?lat=34.08&lng=-118.20&sort=species";
     const apiKey = "kpf4t1mcqhee";
@@ -21,20 +26,27 @@ window.Webflow.push(() => {
 
         const data = await response.json();
 
-        sightingsSection.innerHTML = data.slice(0, 12).map((sighting) => `
-           <div class="w-layout-cell">
-                <div class="yellow-card" style="width: 100%; height: 100%;">
-                    <strong class="heading-h5">${sighting.comName}</strong> <em class="dark-grey" style="font-size: 14px;">(${sighting.sciName})</em>
-                    <br>                
-                    <small class="light-grey" style="font-size: 12.8px;">Location: ${sighting.locName}
-                    <br>
-                    Date: ${sighting.obsDt}
-                    <br>
-                    Count: ${sighting.howMany || 'Not specified'}</small>
-                    <br>
-                </div>
-            </div>
-        `).join("");
+        data.forEach((sighting) => {
+            commonName.innerHTML = sighting.comName;
+            sciName.innerHTML = sighting.sciName;
+            location.innerHTML = sighting.locName;
+            date.innerHTML = sighting.obsDt;
+            count.innerHTML = sighting.howMany || 'Not specified';  
+        }).append(yellowBirdCard);
+        // sightingsSection.innerHTML = data.slice(0, 12).map((sighting) => `
+        //    <div class="w-layout-cell">
+        //         <div id="la-bird-card" class="yellow-card" style="width: 100%; height: 100%;">
+        //             <strong class="heading-h5">${sighting.comName}</strong> <em class="dark-grey" style="font-size: 14px;">(${sighting.sciName})</em>
+        //             <br>                
+        //             <small class="light-grey" style="font-size: 12.8px;">Location: ${sighting.locName}
+        //             <br>
+        //             Date: ${sighting.obsDt}
+        //             <br>
+        //             Count: ${sighting.howMany || 'Not specified'}</small>
+        //             <br>
+        //         </div>
+        //     </div>
+        // `).join("");
     }
 
     const populateDropdown = () => {
