@@ -145,7 +145,7 @@ window.Webflow.push(() => {
                 <p class="notable-card-paragraph">Count: ${bird.howMany || 'Not specified'}</p>
                 </div>
                 </div>
-                <div class="div-block-9">
+                <div class="div-block-9 style="text-align: right;">
                 <div>
                 <p class="notable">Notable</p>
                 <p class="notable-card-paragraph">By. ${bird.userDisplayName}</p>
