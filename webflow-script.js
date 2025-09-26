@@ -95,20 +95,18 @@ window.Webflow.push(() => {
                                 <option value="WY">Wyoming</option>
                             </select>
                     </form>
+                    <button type="submit" id="bird-button"class="button w-button" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                            Find Notable Birds
+                        </button>
+                    <div id="birdState"></div>
+                    <div id="stateBirdsList" class="mt-6" role="region" aria-live="polite" aria-label="Notable birds search results"></div>
         `;
     }
 
     const fetchNotableBirdsByState = async (stateCode, selectedStateName) => {
         const stateBirdsList = document.getElementById('stateBirdsList');
         const birdState = document.getElementById("bird-state");
-        const yellowNotableCard = document.getElementById("notable-bird-card");
-        const noteName = document.querySelectorAll("#notable-name");
-        const noteSciName = document.querySelectorAll("#notable-scientific");
-        const noteLocationlocation = document.querySelectorAll("#notable-location");
-        const noteDate = document.querySelectorAll("#notable-date");
-        const noteCount = document.querySelectorAll("#notable-count");
-        const notePerson = document.querySelectorAll("#notable-person");
-
+        
         console.log("State Code: ", stateCode);
         console.log("Selected State Name: ", selectedStateName);
         if (!stateBirdsList) {
@@ -132,43 +130,30 @@ window.Webflow.push(() => {
             }
 
             const data = await response.json();
-            birdState.innerHTML = `
-            <div id="stateBirdsList" role="region" aria-live="polite" aria-label="Notable birds search results"></div>
-            <h4 class="heading-h4" id="bird-state">Notable Birds in ${selectedStateName} (${data.length} found)</h4>`;
+            birdState.innerHTML = `<h4 class="heading-h4" id="bird-state">Notable Birds in ${selectedStateName} (${data.length} found)</h4>`;
 
             if (data && data.length > 0) {
-                data.forEach((notable) => {
-                    noteName.innerHTML = notable.comName;
-                    noteSciName.innerHTML = notable.sciName;
-                    noteLocationlocation.innerHTML = notable.locName;
-                    noteDate.innerHTML = notable.obsDt;
-                    noteCount.innerHTML = notable.howMany || 'Not specified';
-                    notePerson.innerHTML = notable.userDisplayName;
-                }).append(yellowNotableCard);
-                
-
-                // stateBirdsList.innerHTML = data.slice(0, 50).map((bird) => `
-                // noteName.innerHTML = bird.comName;
-                // <div class="yellow-card small">
-                //     <div class="div-block-7">
-                //         <div class="div-block-8">
-                //             <h6 class="heading-h6">${bird.comName}</h6>
-                //             <p class="paragraph-3">${bird.sciName}</p>
-                //             <div>
-                //                 <p class="notable-card-paragraph">${bird.locName}</p>
-                //                 <p class="notable-card-paragraph">${new Date(bird.obsDt).toLocaleDateString()}</p>
-                //                 <p class="notable-card-paragraph">Count: ${bird.howMany || 'Not specified'}</p>
-                //             </div>
-                //         </div>
-                //     </div>
-                //     <div class="div-block-9">
-                //         <div>
-                //             <p class="notable">Notable</p>
-                //             <p class="notable-card-paragraph">By. ${bird.userDisplayName}</p>
-                //         </div>
-                //     </div>
-                // </div>
-                // `).join("");
+                stateBirdsList.innerHTML = data.slice(0, 50).map((bird) => `
+                <div class="yellow-card small">
+                    <div class="div-block-7">
+                        <div class="div-block-8">
+                    <h6 class="heading-h6">${bird.comName}</h6>
+                <p class="paragraph-3">${bird.sciName}</p>
+                <div>
+                <p class="notable-card-paragraph">${bird.locName}</p>
+                <p class="notable-card-paragraph">${new Date(bird.obsDt).toLocaleDateString()}</p>
+                <p class="notable-card-paragraph">Count: ${bird.howMany || 'Not specified'}</p>
+                </div>
+                </div>
+                <div class="div-block-9">
+                <div>
+                <p class="notable">Notable</p>
+                <p class="notable-card-paragraph">By. ${bird.userDisplayName}</p>
+                </div>
+                </div>
+                </div>
+                </div>
+                `).join("");
             } else {
                 stateBirdsList.innerHTML = '<div class=""><p class="text-center">No notable birds found for this state.</p></div>';
             }
