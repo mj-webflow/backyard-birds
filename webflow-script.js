@@ -25,7 +25,7 @@ window.Webflow.push(() => {
         }
 
         const data = await response.json();
-
+        console.log(yellowBirdCard);
         data.forEach((sighting) => {
             commonName.innerHTML = sighting.comName;
             sciName.innerHTML = sighting.sciName;
