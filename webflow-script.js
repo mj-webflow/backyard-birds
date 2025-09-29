@@ -25,9 +25,8 @@ console.log("yellowBirdCard: " + yellowBirdCard);
         }
 
         const data = await response.json();
-
+        console.log("data: " + data);
         data.forEach((sighting) => {
-            console.log("sighting: " + sighting);
             commonName.innerHTML = sighting.comName;
             sciName.innerHTML = sighting.sciName;
             location.innerHTML = sighting.locName;
