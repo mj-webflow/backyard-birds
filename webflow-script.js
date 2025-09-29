@@ -42,6 +42,7 @@ window.Webflow.push(() => {
         dropdown.innerHTML = `
          <form id="stateForm" class="space-y-4" role="search" aria-label="Search for notable birds by state">
             <div class="form-group"> 
+            <label for="stateSelect" class="dark-grey">Select a U.S. State:</label>
         <select id="stateSelect" name="stateSelect" style="padding: 8px 4px; border: 1px solid #d1d5dc; width: 100%; border-radius: 8px;">    
             </div>
             <option style="color: #3f52b5;" value="">Choose a state...</option>
@@ -97,7 +98,7 @@ window.Webflow.push(() => {
                                 <option value="WY">Wyoming</option>
                             </select>
                     </form>
-                    <button type="submit" id="bird-button"class="button w-button" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <button type="submit" id="bird-button" class="button w-button" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                             Find Notable Birds
                         </button>
                     <div id="birdState"></div>
