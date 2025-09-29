@@ -2,12 +2,7 @@
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
-    const yellowBirdCard = document.getElementById("la-bird-card");
-    const commonName = document.querySelectorAll("#sighting-common");
-    const sciName = document.querySelectorAll("#sighting-scientific");
-    const location = document.querySelectorAll("#sighting-location");
-    const date = document.querySelectorAll("#sighting-date");
-    const count = document.querySelectorAll("#sighting-count");
+    const sightingsSection = document.getElementById("sightingsList");
 
     const baseUrl = "https://api.ebird.org/v2/data/obs/geo/recent?lat=34.08&lng=-118.20&sort=species";
     const apiKey = "kpf4t1mcqhee";
@@ -26,21 +21,27 @@ window.Webflow.push(() => {
 
         const data = await response.json();
 
-        data.forEach((sighting) => {
-            commonName.innerHTML = sighting.comName;
-            sciName.innerHTML = sighting.sciName;
-            location.innerHTML = sighting.locName;
-            date.innerHTML = sighting.obsDt;
-            count.innerHTML = sighting.howMany || 'Not specified';  
-        }).append(yellowBirdCard);
-     }
+        sightingsSection.innerHTML = data.slice(0, 12).map((sighting) => `
+           <div class="w-layout-cell">
+                <div class="yellow-card" style="width: 100%; height: 100%;">
+                    <strong class="heading-h5">${sighting.comName}</strong> <em class="dark-grey" style="font-size: 14px;">(${sighting.sciName})</em>
+                    <br>                
+                    <small class="light-grey" style="font-size: 12.8px;">Location: ${sighting.locName}
+                    <br>
+                    Date: ${sighting.obsDt}
+                    <br>
+                    Count: ${sighting.howMany || 'Not specified'}</small>
+                    <br>
+                </div>
+            </div>
+        `).join("");
+    }
 
     const populateDropdown = () => {
         const dropdown = document.getElementById("state-dropdown");
         dropdown.innerHTML = `
          <form id="stateForm" class="space-y-4" role="search" aria-label="Search for notable birds by state">
             <div class="form-group"> 
-        <label for="stateSelect" class="dark-grey">Select a U.S. State:</label>
         <select id="stateSelect" name="stateSelect" style="padding: 8px 4px; border: 1px solid #d1d5dc; width: 100%; border-radius: 8px;">    
             </div>
             <option style="color: #3f52b5;" value="">Choose a state...</option>
@@ -106,7 +107,7 @@ window.Webflow.push(() => {
 
     const fetchNotableBirdsByState = async (stateCode, selectedStateName) => {
         const stateBirdsList = document.getElementById('stateBirdsList');
-        const birdState = document.getElementById("bird-state");
+        const birdState = document.getElementById("birdState");
         
         console.log("State Code: ", stateCode);
         console.log("Selected State Name: ", selectedStateName);
@@ -146,7 +147,7 @@ window.Webflow.push(() => {
                 <p class="notable-card-paragraph">Count: ${bird.howMany || 'Not specified'}</p>
                 </div>
                 </div>
-                <div class="div-block-9 style="text-align: right;">
+                <div class="div-block-9">
                 <div>
                 <p class="notable">Notable</p>
                 <p class="notable-card-paragraph">By. ${bird.userDisplayName}</p>
