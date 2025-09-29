@@ -11,7 +11,7 @@ window.Webflow.push(() => {
 
     const baseUrl = "https://api.ebird.org/v2/data/obs/geo/recent?lat=34.08&lng=-118.20&sort=species";
     const apiKey = "kpf4t1mcqhee";
-console.log("yellowBirdCard: " + yellowBirdCard);
+
     const fetchSightings = async () => {
         const response = await fetch(baseUrl, {
             method: "GET",
@@ -25,14 +25,14 @@ console.log("yellowBirdCard: " + yellowBirdCard);
         }
 
         const data = await response.json();
-        console.log("data: " + data);
+
         data.forEach((sighting) => {
             commonName.innerHTML = sighting.comName;
             sciName.innerHTML = sighting.sciName;
             location.innerHTML = sighting.locName;
             date.innerHTML = sighting.obsDt;
             count.innerHTML = sighting.howMany || 'Not specified';  
-        }).appendChild(yellowBirdCard);
+        }).append(yellowBirdCard);
      }
 
     const populateDropdown = () => {
