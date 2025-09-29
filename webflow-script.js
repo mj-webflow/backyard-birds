@@ -3,11 +3,11 @@
 window.Webflow ||= [];
 window.Webflow.push(() => {
     const yellowBirdCard = document.getElementById("la-bird-card");
-    const commonName = document.getElementById("sighting-common");
-    const sciName = document.getElementById("sighting-scientific");
-    const location = document.getElementById("sighting-location");
-    const date = document.getElementById("sighting-date");
-    const count = document.getElementById("sighting-count");
+    const commonName = document.querySelectorAll("#sighting-common");
+    const sciName = document.querySelectorAll("#sighting-scientific");
+    const location = document.querySelectorAll("#sighting-location");
+    const date = document.querySelectorAll("#sighting-date");
+    const count = document.querySelectorAll("#sighting-count");
 
     const baseUrl = "https://api.ebird.org/v2/data/obs/geo/recent?lat=34.08&lng=-118.20&sort=species";
     const apiKey = "kpf4t1mcqhee";
