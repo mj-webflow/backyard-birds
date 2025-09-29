@@ -25,14 +25,14 @@ window.Webflow.push(() => {
         }
 
         const data = await response.json();
-        console.log("yellowBirdCard: " + yellowBirdCard);
+
         data.forEach((sighting) => {
             commonName.innerHTML = sighting.comName;
             sciName.innerHTML = sighting.sciName;
             location.innerHTML = sighting.locName;
             date.innerHTML = sighting.obsDt;
             count.innerHTML = sighting.howMany || 'Not specified';  
-        }).append(yellowBirdCard);
+        }).appendChild(yellowBirdCard);
      }
 
     const populateDropdown = () => {
