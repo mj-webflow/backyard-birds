@@ -40,6 +40,7 @@ window.Webflow.push(() => {
         dropdown.innerHTML = `
          <form id="stateForm" class="space-y-4" role="search" aria-label="Search for notable birds by state">
             <div class="form-group"> 
+        <label for="stateSelect" class="dark-grey">Select a U.S. State:</label>
         <select id="stateSelect" name="stateSelect" style="padding: 8px 4px; border: 1px solid #d1d5dc; width: 100%; border-radius: 8px;">    
             </div>
             <option style="color: #3f52b5;" value="">Choose a state...</option>
