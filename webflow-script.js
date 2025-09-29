@@ -27,12 +27,13 @@ console.log("yellowBirdCard: " + yellowBirdCard);
         const data = await response.json();
 
         data.forEach((sighting) => {
+            console.log("sighting: " + sighting);
             commonName.innerHTML = sighting.comName;
             sciName.innerHTML = sighting.sciName;
             location.innerHTML = sighting.locName;
             date.innerHTML = sighting.obsDt;
             count.innerHTML = sighting.howMany || 'Not specified';  
-        }).append(yellowBirdCard);
+        }).appendChild(yellowBirdCard);
      }
 
     const populateDropdown = () => {
