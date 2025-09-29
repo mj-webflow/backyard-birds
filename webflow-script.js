@@ -32,7 +32,7 @@ console.log("yellowBirdCard: " + yellowBirdCard);
             location.innerHTML = sighting.locName;
             date.innerHTML = sighting.obsDt;
             count.innerHTML = sighting.howMany || 'Not specified';  
-        }).clone(yellowBirdCard);
+        }).append(yellowBirdCard);
      }
 
     const populateDropdown = () => {
