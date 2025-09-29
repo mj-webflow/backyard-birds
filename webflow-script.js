@@ -26,13 +26,15 @@ window.Webflow.push(() => {
 
         const data = await response.json();
 
-        data.forEach((sighting) => {
+        if (data && data.length > 0) {
+            // Use the first sighting to populate the card
+            const sighting = data[0];
             commonName.innerHTML = sighting.comName;
             sciName.innerHTML = sighting.sciName;
             location.innerHTML = sighting.locName;
             date.innerHTML = sighting.obsDt;
-            count.innerHTML = sighting.howMany || 'Not specified';  
-        }).appendChild(yellowBirdCard);
+            count.innerHTML = sighting.howMany || 'Not specified';
+        }  
      }
 
     const populateDropdown = () => {
